@@ -1,6 +1,8 @@
 # Node Express With Elastic Search
 ## Procedures to run this project
 
+This project was possible courtesy [Erik Astorgabuguenno](https://medium.com/yom-ai/rest-api-with-node-js-and-elasticsearch-1368cf9df02a)
+
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
 The code is written in javascript and runs on node. The following packages are required.

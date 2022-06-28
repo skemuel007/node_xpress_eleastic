@@ -14,7 +14,47 @@ const elasticClient = elastic.Client({
     host: elasticUrl
 });
 
-router.use((req, res, next) => {
+async function createIndex(index) {
+    try {
+        await elasticClient.indices.create({ index });
+        console.log(`Created index ${index}`);
+    } catch (err) {
+        console.error(`An error occurred while creating the index ${index}:`);
+        console.error(err);
+    }
+}
+
+function checkConnection() {
+    return new Promise(async (resolve) => {
+
+        console.log("Checking connection to ElasticSearch...");
+
+        let isConnected = false;
+
+        while (!isConnected) {
+
+            try {
+                await elasticClient.cluster.health({});
+                console.log("Successfully connected to ElasticSearch");
+                isConnected = true;
+                // eslint-disable-next-line no-empty
+            } catch (_) {}
+        }
+
+        resolve(true);
+
+    });
+}
+
+router.use(async  (req, res, next) => {
+    const isElasticReady = await checkConnection();
+    if (isElasticReady) {
+        const elasticIndex = await elasticClient.indices.exists({index: index});
+
+        if (!elasticIndex.body) {
+            await createIndex(index);
+        }
+    }
     elasticClient.index({
         index: 'logs',
         body: {

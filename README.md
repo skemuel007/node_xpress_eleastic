@@ -2,6 +2,7 @@
 ## Procedures to run this project
 
 This project was possible courtesy [Erik Astorgabuguenno](https://medium.com/yom-ai/rest-api-with-node-js-and-elasticsearch-1368cf9df02a)
+and [Michele Riva](https://towardsdatascience.com/full-text-search-with-node-js-and-elasticsearch-on-docker-edcea23612fd)
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
